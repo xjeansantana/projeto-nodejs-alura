@@ -1,12 +1,17 @@
-const Atendimento = require('../models/atendimentos')
+const conexao = require('../infraestrutura/conexao')
 
-module.exports = app => { 
-    app.get('/atendimentos', (req, res) => res.send('Você está na rota de atendimentos e está realizando um GET'))
+class Atendimento {
+    adiciona(atendimento) {
+        const sql = 'INSERT INTO Atendimentos SET ?'
 
-    app.post('/atendimentos', (req, res) => {
-        const atendimento = req.body
-
-        Atendimento.adiciona(atendimento)
-        res.send('Post atendimento')
-    })
+        conexao.query(sql, atendimento, (erro, resultados) => {
+            if(erro) {
+                console.log(erro)
+            } else {
+                console.log(resultados)
+            }
+        })
+    }
 }
+
+module.exports = new Atendimento

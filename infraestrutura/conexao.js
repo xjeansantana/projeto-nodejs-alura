@@ -1,4 +1,4 @@
-const mysql = require('mysql2')
+const mysql = require('mysql')
 
 const conexao = mysql.createConnection({
     host: 'localhost',
@@ -8,6 +8,4 @@ const conexao = mysql.createConnection({
     database: 'agenda-petshop'
 })
 
-
 module.exports = conexao
-
